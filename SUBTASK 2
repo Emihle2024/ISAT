@@ -1,0 +1,74 @@
+def decimal_to_binary(decimal_value):
+    """Convert a decimal integer to a binary string."""
+    if decimal_value < 0:
+        raise ValueError("Input must be a non-negative integer")
+    return bin(decimal_value)[2:]
+
+def binary_to_decimal(binary_string):
+    """Convert a binary string to a decimal integer."""
+    if not all(char in '01' for char in binary_string):
+        raise ValueError("Input must be a string containing only '0' and '1'")
+    return int(binary_string, 2)
+
+def decimal_to_hex(decimal_value):
+    """Convert a decimal integer to a hexadecimal string."""
+    if decimal_value < 0:
+        raise ValueError("Input must be a non-negative integer")
+    return hex(decimal_value)[2:].upper()
+
+def hexadecimal_to_decimal(hex_string):
+    """Convert a hexadecimal string to a decimal integer."""
+    if not all(char in '0123456789ABCDEF' for char in hex_string.upper()):
+        raise ValueError("Input must be a string containing only valid hexadecimal digits")
+    return int(hex_string, 16)
+
+def menu():
+    """Display the menu and handle user choices."""
+    while True:
+        print("\nConversion Menu:")
+        print("1. Decimal to Binary")
+        print("2. Binary to Decimal")
+        print("3. Decimal to Hexadecimal")
+        print("4. Hexadecimal to Decimal")
+        print("5. Exit")
+
+        choice = input("Select an option (1-5): ")
+
+        if choice == '1':
+            try:
+                decimal_value = int(input("Enter a decimal integer: "))
+                print(f"Binary equivalent: {decimal_to_binary(decimal_value)}")
+            except ValueError as e:
+                print(f"Error: {e}")
+
+        elif choice == '2':
+            binary_string = input("Enter a binary string: ")
+            try:
+                print(f"Decimal equivalent: {binary_to_decimal(binary_string)}")
+            except ValueError as e:
+                print(f"Error: {e}")
+
+        elif choice == '3':
+            try:
+                decimal_value = int(input("Enter a decimal integer: "))
+                print(f"Hexadecimal equivalent: {decimal_to_hex(decimal_value)}")
+            except ValueError as e:
+                print(f"Error: {e}")
+
+        elif choice == '4':
+            hex_string = input("Enter a hexadecimal string: ")
+            try:
+                print(f"Decimal equivalent: {hexadecimal_to_decimal(hex_string)}")
+            except ValueError as e:
+                print(f"Error: {e}")
+
+        elif choice == '5':
+            print("Exiting the program. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+# Run the menu system
+if __name__ == "__main__":
+    menu()
