@@ -1,0 +1,39 @@
+
+#include <iostream>
+#include <string>
+
+const int MAX_ORDERS = 100; // Adjust based on expected order volume
+
+int orderID[MAX_ORDERS];
+std::string customerName[MAX_ORDERS];
+std::string orderItems[MAX_ORDERS];
+int orderQuantity[MAX_ORDERS];
+double orderPrice[MAX_ORDERS];
+int numOrders = 0; // To keep track of the number of orders
+
+// Function to add a new order
+void addOrder(int id, const std::string& name, const std::string& items, int quantity, double price) {
+    if (numOrders < MAX_ORDERS) {
+        orderID[numOrders] = id;
+        customerName[numOrders] = name;
+        orderItems[numOrders] = items;
+        orderQuantity[numOrders] = quantity;
+        orderPrice[numOrders] = price;
+        numOrders++;
+    } else {
+        std::cout << "Order limit reached." << std::endl;
+    }
+}
+
+// Function to retrieve order information (example)
+void getOrderInfo(int id) {
+    for (int i = 0; i < numOrders; i++) {
+        if (orderID[i] == id) {
+            std::cout << "Order ID: " << orderID[i] << std::endl;
+            std::cout << "Customer Name: " << customerName[i] << std::endl;
+            // ... other order details
+            break;
+        }
+    }
+}
+
